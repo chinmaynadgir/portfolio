@@ -1,0 +1,30 @@
+<div id="notification-panel"></div>
+<div class="dock-parent" id="scorecard">
+    <div class="toolbar-container"></div>
+    {{#dock (lz 'label.global_details_dock_title') 'bottom' noOrientation=true}}
+        {{#toolbar class="pane-toolbar"}}
+            {{#button "toolbar" (lz "label.global_refresh") id="project-filter-refresh" }}{{icon "refresh" (lz "label.global_refresh") id="project-filter-refresh-icon"}}{{/button}}
+            <div class="pull-right">
+                {{#controlGroup (lz "label.global_toolbar_show_label") class='scorecard-filter-select toolbar-item' for="scorecard-filter-select" inline=true}}
+                    {{input "text" id="scorecard-filter-select"}}
+                {{/controlGroup}}
+                {{#toggle "data" id="project-portfolio-toggle" class="btn-toggle-switch compact"}}
+                    {{#button "" (lz "label.workspace_overview_projects") disabled=true class="project"}}
+                        {{icon "ent-project" (lz "label.workspace_overview_projects")}}
+                    {{/button}}
+                    {{#button "" (lz "label.portfolios_in_workspace") disabled=true class="portfolio"}}
+                        {{icon "ent-cap-portfolio" (lz "label.portfolios_in_workspace")}}
+                    {{/button}}
+                {{/toggle}}
+                {{#button "toolbar" (lz 'label.global_settings') class="hidden" data-action="settings" id="project-settings-btn"}}
+                    {{icon "settings" (lz 'label.global_settings')}}
+                {{/button}}
+                {{#button "toolbar" (lz 'label.global_settings') class="hidden" data-action="settings" id="portfolio-settings-btn"}}
+                    {{icon "settings" (lz 'label.global_settings')}}
+                {{/button}}
+            </div>
+        {{/toolbar}}
+        <div class="grid" id="project-table"></div>
+        <div class="grid" id="portfolio-table"></div>
+    {{/dock}}
+</div>

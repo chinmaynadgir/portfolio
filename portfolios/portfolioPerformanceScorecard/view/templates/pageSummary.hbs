@@ -1,0 +1,9 @@
+{{!--{
+    "deps" : ["shared/discussion/helpers/discussionAnchor"]
+}--}}
+
+{{discussionButton}}
+{{#button 'not-btn' class="simple-share-button hidden" id="simple-share"}}
+    {{icon 'share' (? this.name (lz 'label.global_share_item' this.name) (lz 'label.global_share_tooltip'))}}
+{{/button}}
+

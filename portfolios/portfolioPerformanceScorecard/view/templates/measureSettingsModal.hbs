@@ -1,0 +1,15 @@
+{{#modal (lz "label.global_settings") class='measure-settings-dialog'}}
+    {{modalHeader}}
+    {{#modalBody}}
+        {{#panelContainer "content" style="height: 100%;"}}
+            {{#tabList}}
+            {{/tabList}}
+            {{#panels}}
+            {{/panels}}
+        {{/panelContainer}}
+    {{/modalBody}}
+    {{#modalFooter}}
+        {{#button "secondary" id="btn-cancel" data-dismiss="modal"}}{{lz "label.global_cancel"}}{{/button}}
+        {{#button "primary" id="btn-apply"}}{{lz "label.global_apply"}}{{/button}}
+    {{/modalFooter}}
+{{/modal}}

@@ -1,0 +1,64 @@
+{
+  "currentViewId": "1",
+  "allViews": [
+    {
+      "id": "1",
+      "name": "Test View",
+      "type": "user",
+      "viewData": {
+        "single": {
+          "columnGroups": [
+            {
+              "id": "portfolioPerformanceScorecardFixedColumnGroup",
+              "columns": [
+                "name"
+              ],
+              "width": 127
+            },
+            {
+              "id": "portfolioPerformanceScorecardColumnGroup",
+              "columns": [
+                "cityName",
+                "forecastFinish",
+                "description"
+              ],
+              "width": 1729
+            }
+          ],
+          "columns": {
+            "id": {
+              "width": "125px",
+              "visible": false
+            },
+            "name": {
+              "width": "125px",
+              "visible": true
+            },
+            "cityName": {
+              "width": "125px",
+              "visible": true
+            },
+            "forecastFinish": {
+              "width": "125px",
+              "visible": true
+            },
+            "description": {
+              "width": "125px",
+              "visible": true
+            }
+          }
+        },
+        "visiblemeasures": [
+          {
+            "id": "1",
+            "name": "savings"
+          },
+          {
+            "id": "3",
+            "name": "Project on time"
+          }
+        ]
+      }
+    }
+  ]
+}

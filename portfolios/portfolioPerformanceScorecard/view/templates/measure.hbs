@@ -1,0 +1,26 @@
+<div class="measure-header-item btn-group hide" data-id="{{this.id}}">
+    <div id="measure-tile-{{this.id}}" tabindex="0" aria-labelledby="header-{{this.id}} value-{{this.id}} indicator-{{this.id}}">
+        <span class="measure-header pull-left" title="{{this.name}}" measure-id="{{this.id}}">{{this.name}}</span>
+        <br />
+
+        <span class="measure-value-indicator">
+        {{#if this.canViewMeasure}}
+           <span class="measure-value" title="{{this.value}}">{{this.value}}</span>
+           <span class="measure-indicator">
+               {{icon (_ 'indicator-' this.statusIndicatorIcon) (_ this.statusIndicatorIcon '-' this.statusIndicatorColor) style=(_ 'color:#' this.statusIndicatorColor)}}
+           </span>
+        {{else}}
+            <span class="measure-locked">
+                {{icon "locked-hover" ""}}
+            </span>
+        {{/if}}
+        </span>
+
+        <div class="measure-trend">
+            <div class="chart-container" title="{{this.name}}"></div>
+        </div>
+        {{#if this.canViewTrend}}
+            {{icon 'chart-line' (lz 'label.ms_measure_trend') class='measure-trend-icon pull-right' tabindex='0'}}
+        {{/if}}
+    </div>
+</div>

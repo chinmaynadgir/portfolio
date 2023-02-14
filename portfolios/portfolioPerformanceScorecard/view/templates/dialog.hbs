@@ -1,0 +1,16 @@
+{{#modal (lz "label.measures_selection_dialog_title") id="measuresDialog" class="measure-picker-dialog"}}
+    {{#modalHeader}}
+        {{lz "label.measures_selection_dialog_desc"}}
+    {{/modalHeader}}
+    {{#modalBody}}
+        <div class="doublePickerContainer"></div>
+    {{/modalBody}}
+    {{#modalFooter class="dialogChangeBar"}}
+        {{#change-bar-controls}}
+            {{change-bar-cancel}}
+            {{#change-bar-save "primary"}}
+                {{lz "label.global_apply"}}
+            {{/change-bar-save}}
+        {{/change-bar-controls}}
+    {{/modalFooter}}
+{{/modal}}

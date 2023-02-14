@@ -1,0 +1,17 @@
+{{#change-bar-controls}}
+    {{#button 'secondary' class = 'reset-view-button'}}{{lz 'label.global_view_reset'}}{{/button}}
+    {{#buttonGroup}}
+        {{#button 'primary' class = 'save-view-button'}}
+            {{#change-bar-save-inner}}
+                {{lz 'label.investor_map_save_view'}}
+            {{/change-bar-save-inner}}
+        {{/button}}
+    {{/buttonGroup}}
+    {{#buttonGroup}}
+        {{#button 'primary' class = 'save-view-as-button'}}
+            {{#change-bar-save-inner}}
+                {{lz 'label.global_save_view_as_'}}
+            {{/change-bar-save-inner}}
+        {{/button}}
+    {{/buttonGroup}}
+{{/change-bar-controls}}

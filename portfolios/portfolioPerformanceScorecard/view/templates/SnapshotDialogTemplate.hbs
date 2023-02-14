@@ -1,0 +1,16 @@
+{{#modal this.projectName id="project-snapshot-dialog" class="modal-full-page"}}
+    {{modalHeader}}
+    {{#modalBody}}
+        {{#toolbar id="scorecard-snapshot-toolbar"}}
+            <div class="pull-right">
+                {{#controlGroup (lz "label.proj_costing_timeframe_label") id="timeframe-selector-area"
+                            class="toolbar-item" inline=true style="display:inline-block;"}}
+                {{/controlGroup}}
+                <div id="snapshot-currency" style="display:inline-block"></div>
+            </div>
+        {{/toolbar}}
+        <div class="grid" id="project-snapshot-table"></div>
+        <div class="project-snapshot-comments"></div>
+    {{/modalBody}}
+
+{{/modal}}

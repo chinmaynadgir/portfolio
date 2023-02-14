@@ -1,0 +1,36 @@
+<span id='measures-toolbar'>
+{{#toolbar class="hidden"}}
+    {{#buttonGroup id="integration-btn-group"}}
+        {{#button "toolbar" dropdownToggle=true id="integration-btn"}}{{lz "label.global_toolbar_integrate"}}&nbsp;{{caret}}{{/button}}
+        {{#dropdownMenu}}
+            {{#dropdownItem id="save-snapshot-btn"}}{{lz "label.global_save_snapshot"}}{{/dropdownItem}}
+            {{#dropdownItem id="revise-plan-btn"}}{{lz "label.ms_revise_plan_label"}}{{/dropdownItem}}
+            {{#dropdownItem id="revise-rsrc-plan-btn"}}{{lz "label.ms_revise_rsrc_plan"}}{{/dropdownItem}}
+        {{/dropdownMenu}}
+    {{/buttonGroup}}
+    {{#button "toolbar" "" id="measure-refresh" data-action="recalcMeasureData" class=""}}
+        {{icon "recalculate" "" id="measure-refresh-icon"}}
+    {{/button}}
+    {{#button 'toolbar' data-action="printPage"}}
+        {{icon 'print' (lz 'label.global_print')}}
+    {{/button}}
+    <div class="pull-right">
+        <div class="views-dropdown toolbar-item" style="display: inline-block;"></div>
+        {{#controlGroup (lz 'label.global_toolbar_show_label') inline=true for='measure-view-select' class='measure-view-select toolbar-item'}}
+            <select id="measure-view-select">
+                <option value="value">{{lz "label.ms_view_values"}}</option>
+                <option value="icon">{{lz "label.ms_view_indicators"}}</option>
+                <option value="value-icon" selected>{{lz "label.ms_view_values_and_indicators"}}</option>
+                <option value="icon-value">{{lz "label.ms_view_indicators_and_values"}}</option>
+            </select>
+        {{/controlGroup}}
+        {{#button 'toolbar' data-action='settings'}}
+            {{icon 'settings' (lz 'label.global_settings')}}
+        {{/button}}
+        {{input "search"}}
+    </div>
+{{/toolbar}}
+    <div id="measure-header-pane" class="measures-header-pane print-content">
+        <span class="no-measure-text">{{lz 'label.portfolio_statistics'}}</span>
+    </div>
+</span>

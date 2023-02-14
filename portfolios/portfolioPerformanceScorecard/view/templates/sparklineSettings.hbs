@@ -1,0 +1,11 @@
+{{#controlGroup ''}}
+    {{#input 'checkbox' 'true' id='toggle-sparklines'}}{{lz 'label.ms_show_sparklines'}}{{/input}}
+{{/controlGroup}}
+<div id="sparkline-options-settings">
+    {{#controlGroup (lz 'label.ms_sparkline_periods')}}
+        {{input 'number' id='sparkilne-period' class='input-small' hint='' hintHidden=true}}
+    {{/controlGroup}}
+    {{#controlGroup ''}}
+        {{#input 'checkbox' 'true' id='toggle-high-low-marker'}}{{lz 'label.ms_show_sparklines_marker'}}{{/input}}
+    {{/controlGroup}}
+</div>

@@ -1,0 +1,11 @@
+<div class="toolbar-container">
+    {{#toolbar}}
+        <div class="pull-right">
+            {{#button 'toolbar' data-action='settings'}}
+                {{icon 'settings' (lz 'label.global_settings')}}
+            {{/button}}
+            {{input 'search'}}
+        </div>
+    {{/toolbar}}
+</div>
+<div class="grid"></div>

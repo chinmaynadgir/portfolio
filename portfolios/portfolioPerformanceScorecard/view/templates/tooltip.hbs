@@ -1,0 +1,19 @@
+{{#chartTooltip}}
+    {{#chartTooltipTitle}}{{this.name}}{{/chartTooltipTitle}}
+    {{#chartTooltipRow}}
+        {{#chartTooltipLabel}}{{lz 'label.ms_sparkline_high_value'}}:{{/chartTooltipLabel}}
+        {{#chartTooltipText}}{{this.highValue}}{{/chartTooltipText}}
+    {{/chartTooltipRow}}
+    {{#chartTooltipRow}}
+        {{#chartTooltipLabel}}{{lz 'label.ms_sparkline_low_value'}}:{{/chartTooltipLabel}}
+        {{#chartTooltipText}}{{this.lowValue}}{{/chartTooltipText}}
+    {{/chartTooltipRow}}
+    {{#chartTooltipRow}}
+        {{#chartTooltipLabel}}{{lz 'label.ms_sparkline_start_date'}}:{{/chartTooltipLabel}}
+        {{#chartTooltipText}}{{this.startDate}}{{/chartTooltipText}}
+    {{/chartTooltipRow}}
+    {{#chartTooltipRow}}
+        {{#chartTooltipLabel}}{{lz 'label.ms_sparkline_end_date'}}:{{/chartTooltipLabel}}
+        {{#chartTooltipText}}{{this.endDate}}{{/chartTooltipText}}
+    {{/chartTooltipRow}}
+{{/chartTooltip}}

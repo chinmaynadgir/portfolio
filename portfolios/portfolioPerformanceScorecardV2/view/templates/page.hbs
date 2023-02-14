@@ -1,0 +1,21 @@
+<div class="dock-parent" style="height: 100%">
+<div id="master-panel"></div>
+{{#dock (lz 'label.global_details_dock_title') 'bottom'}}
+    {{#panelContainer 'content'}}
+        {{#tabList}}
+            {{tab (lz 'label.global_projects') 'projectsGrid-tab' class="active"}}
+            {{tab (lz 'label.admin_workspace_security_programs') 'programsGrid-tab'}}
+            {{tab (lz 'label.ms_settings_measures') 'measures-tab'}}
+            {{!-- @@ADDITIONAL_DETAIL_PANEL_PLACEHOLDER_TAB@@ --}} {{! To allow additional detail panel generation, do not remove this line }}
+        {{/tabList}}
+        {{#panels}}
+            {{!-- This ID should be same as the key of the details panel when calling it in the launcher --}}
+            {{!-- See src/portfolios/portfolioPerformanceScorecardV2/portfolioPerformanceScorecardV2.js --}}
+            {{#panel 'projectsGrid-tab'}}{{/panel}}
+            {{#panel 'programsGrid-tab'}}{{/panel}}
+            {{#panel 'measures-tab'}}{{/panel}}
+            {{!-- @@ADDITIONAL_DETAIL_PANEL_PLACEHOLDER_PANEL@@ --}} {{! To allow additional detail panel generation, do not remove this line }}
+        {{/panels}}
+    {{/panelContainer}}
+{{/dock}}
+</div>
