@@ -70,7 +70,7 @@ define([
             },
             menuFns : {
                 checkActionEnabled :  (action) => {
-                    const column = this.grid.selection.recordIds[0];
+                    const column = window.grid.selection.recordIds[0];
                     return (action.actionIndex === 'snapshotData') ?
                         ((column !== constants.types.PROJECT_SUMMARY) &&
                             (column !== constants.types.RESTRICTED_PROJECTS)) : action.enabled;

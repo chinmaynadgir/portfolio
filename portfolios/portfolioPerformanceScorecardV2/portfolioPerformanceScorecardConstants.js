@@ -19,8 +19,10 @@ define([
             PORTFOLIO_FIELDS : 'portfolioFields',
             PORTFOLIO : 'portfolioMembers',
             PORTFOLIO_SUMMARY : 'portfolioSummary',
+            PROJECT_SNAPSHOTS : '__project-snapshots',
             PORTFOLIO_MEASURES : 'portfolioMeasures',
-            LAST_CALCULATED_DATE : 'lastMeasureCalculatedDate'
+            LAST_CALCULATED_DATE : 'lastMeasureCalculatedDate',
+            BASE : 'base'
         },
         gridLayout : {
             flexRowset : 'portfolioPerformanceScorecardRowset',
@@ -32,6 +34,7 @@ define([
         routes : {
             SAVE_VIEW : urls.template(pageInfo.baseUrl + 'rest/cp/portfolioMonitoringScorecard/view'),
             SAVE_REVIEW_FLAG : urls.template(pageInfo.baseUrl + 'rest/cp/portfolioMonitoringScorecard'),
+            LOAD_PROJECT_SNAPSHOTS : urls.template(pageInfo.baseUrl + 'rest/cp/portfolioMonitoringScorecard/projects/<%=projectId%>/snapshots'),
             PROJECTS : urls.template(pageInfo.baseUrl + 'rest/cp/portfolioMonitoringScorecard'),
             PORTFOLIOS : urls.template(pageInfo.baseUrl + 'rest/cp/portfolioMonitoringScorecard'),
             PORTFOLIO_MEASURES : urls.template(pageInfo.baseUrl + 'rest/cp/capitalPortfolioInventory/<%=capitalPortfolioId%>/measures')
@@ -52,6 +55,9 @@ define([
             PORTFOLIOS : 'PortfolioMemberRO',
             PORTFOLIO_SCORECARD_DETAILS : 'PortfolioScorecardDetailRO',
             PROJECT_MEASURE_INVENTORY : 'projectMeasureInventory'
+        },
+        tables:{
+            SNAPSHOT_META : 'SnapshotRO'
         },
         keys : {
             NOT_APPLICABLE : 'NA',
@@ -91,6 +97,7 @@ define([
             NAME : 'name',
             ID : 'id',
             OWNER : 'owner',
+            COMMIT_DURATION : 'commitDuration',
             REVIEW : 'review',
             PARENT_ID : 'parentId',
             PRIMARY_PROGRAM : 'primaryProgram',
@@ -101,7 +108,11 @@ define([
             DEFAULT_FILTER : {
                 match : 'ALL',
                 rows : []
-            }
+            },
+            ALL : 'all',
+            PAST_MONTH : 'pastMonth',
+            PAST_SIX_MONTHS : 'pastSix',
+            PAST_YEAR : 'pastYear'
         },
         codeType : {
             CO_CODE_TYPE: 'CO_CODE_TYPE-',

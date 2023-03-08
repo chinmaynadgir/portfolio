@@ -1,6 +1,7 @@
 define([
     'jquery',
     'lodash',
+    'moment',
     'localizer',
     'bpc/store/Store',
     'userFormatters',
@@ -10,7 +11,7 @@ define([
     'shared/fields/fieldUtil',
     'shared/fields/dateFields',
     'shared/discussion/DiscussionListener'
-], function ($, _, localizer, BaseStore, userFormatters, constants, MetadataBuilder, MultiCurrencyHelper, fieldUtil,
+], function ($, _, moment, localizer, BaseStore, userFormatters, constants, MetadataBuilder, MultiCurrencyHelper, fieldUtil,
     dateFields, DiscussionListener) {
     'use strict';
 
@@ -25,6 +26,7 @@ define([
             options.timezoneSensitiveDateFormatter = userFormatters.timezoneSensitiveDateTimeFormatter;
             super(options);
             this.measuresPortfolioColumns = [];
+            this.projectSnapshots = {};
             this.measuresProjectsColumns = [];
             this.portfolioKpi = [];
             this.projectMeasures = [];
@@ -34,7 +36,8 @@ define([
             });
             this.projectListMultiCurrencyHelper = new MultiCurrencyHelper({
                 areCostFieldsModified : false,
-                viewPrefix : constants.keys.PROJECT_LIST_VIEW
+                viewPrefix : constants.keys.PROJECT_LIST_VIEW,
+                getMCToolbar : () => $('#project-table').prev()
             });
         }
 
@@ -77,6 +80,12 @@ define([
             if (!this.views.isInitialized()) {
                 this.initializeNamedViews(meta.views, meta.view, meta.viewMeta);
             }
+        }
+
+        /* workaround to deal with the server retaining old owner RO while the grid uses the join column with a generic picker */
+        unserialize (type, item, dateFields) {
+            this._unserialize(type, item, dateFields);
+            return item;
         }
 
         // eslint-disable-next-line class-methods-use-this
@@ -189,6 +198,43 @@ define([
                 this.clear(type);
                 this.addAll(type, codes);
             });
+        }
+
+        fetchProjectSnapshots (project) {
+            var that = this,
+                dfd = $.Deferred(),
+                projectId = project.id, timezoneFormatter = userFormatters.timezoneSensitiveDateTimeFormatter;
+            if (!_.has(that.projectSnapshots, projectId)) {
+                that.currentSnapshotItem(project);
+                $.when(that.utilities.GETWithContext(constants.routes.LOAD_PROJECT_SNAPSHOTS({ projectId : projectId }))).done((response) => {
+                    that.addAll(constants.types.PROJECT_SNAPSHOTS, response, (type, item) => {
+                        item.id = _.uniqueId();
+                        item.time = timezoneFormatter.unserialize(item.time);
+                        item.project = that.unserialize(constants.types.PROJECTS, item.project, that.projectDateFields);
+                        return item;
+                    });
+
+                    that.projectSnapshots[projectId] = null;
+                    dfd.resolve();
+                }).fail((jqXHR, textStatus, errorThrown) => {
+                    dfd.reject.apply(dfd, arguments);
+                });
+            } else {
+                return dfd.resolve();
+            }
+            return dfd.promise();
+        }
+
+        currentSnapshotItem (item) {
+            // create a current snapshot for each project - used in snapshot dialog
+            const snapshot = {
+                id : item.id + 'snapshot',
+                name : localizer.getString('label.global_current_data'),
+                time : moment(),
+                project : item,
+                isCurrent : true
+            };
+            this.add(constants.types.PROJECT_SNAPSHOTS, snapshot);
         }
 
         clearProjects () {

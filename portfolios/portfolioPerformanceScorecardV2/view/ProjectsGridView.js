@@ -6,9 +6,12 @@ define([
     'src/portfolios/portfolioPerformanceScorecardV2/model/ProjectsGridMediator',
     'src/portfolios/portfolioPerformanceScorecardV2/view/grid/projectsGridGridConfig',
     'hbr!src/portfolios/portfolioPerformanceScorecardV2/view/templates/projectsGrid.hbs',
+    'shared/gridSettingsDialog/GridSettingsDialog',
+    'src/portfolios/portfolioPerformanceScorecardV2/view/SnapshotDialogView',
+    'src/portfolios/portfolioPerformanceScorecardV2/controller/SnapshotDialogController',
     'src/portfolios/portfolioPerformanceScorecardV2/portfolioPerformanceScorecardConstants',
     'shared/discussion/DiscussionListener'
-], function (_, localizer, userFormatters, GridDetailPanelView, Mediator, gridConfig, markup, constants,
+], function (_, localizer, userFormatters, GridDetailPanelView, Mediator, gridConfig, markup, GridSettingsDialog, SnapshotView, SnapshotController, constants,
              DiscussionListener) {
     'use strict';
 
@@ -44,6 +47,23 @@ define([
                 }
             });
             this._gridDiscussion.listen();
+        }
+
+        _initGridListeners () {
+            var that = this;
+            GridDetailPanelView.prototype._initGridListeners.apply(this, arguments);
+            this._$grid.on('grid-view-snapshot-data', (event, args) => {
+                const project = args.records[0], scorecardController = that._controller, visibleColumns = [];
+                const viewConfig = _.pick(that._getViewConfig().named, 'columnGroups');
+                _.forEach(that._getViewConfig().named.columns, (column, dataIndex) => {
+                    if (column.visible) {
+                        visibleColumns.push(dataIndex);
+                    }
+                });
+                const scorecardGridColumns = _.pick(that._getGridConfig(scorecardController.getMetadata(), scorecardController.getType()), 'columns');
+                const snapshotMetadata = _.assign({ visibleColumns : visibleColumns }, scorecardGridColumns, viewConfig);
+                new SnapshotView(new SnapshotController(scorecardController.getStore()), scorecardController.getStore(), project, snapshotMetadata);
+            });
         }
 
         setUpDiscussion (discussionOptions) {

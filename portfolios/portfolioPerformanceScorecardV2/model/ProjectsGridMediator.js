@@ -216,11 +216,11 @@ define([
                 return this.store.items(type, (record) => !_.includes([constants.types.PROJECT_SUMMARY,
                     constants.types.RESTRICTED_PROJECTS], record.id) && filterFn(record));
             }
-            return this.store.items(constants.types.PROJECTS, function (record) {
-                return !_.includes([constants.types.PROJECT_SUMMARY, constants.types.RESTRICTED_PROJECTS], record.id) &&
+            return this.store.items(constants.types.PROJECTS,
+                (record) => !_.includes([constants.types.PROJECT_SUMMARY, constants.types.RESTRICTED_PROJECTS], record.id) &&
                     ((check === constants.projectFilterTypes.ALL || check === constants.projectFilterTypes.BUDGET_APPROVED ||
-                        (check === constants.projectFilterTypes.REVIEW && record.review)) && filterFn(record));
-            });
+                        (check === constants.projectFilterTypes.REVIEW && record.review)) && filterFn(record))
+            );
         }
 
         updateProjectSummaryRollups () {

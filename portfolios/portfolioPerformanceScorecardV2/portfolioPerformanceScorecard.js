@@ -49,7 +49,8 @@ define([
             },
 
             controller : PortfolioPerformanceScorecardController,
-            view : PortfolioPerformanceScorecardView,
+            view : PortfolioPerformanceScorecardView
+            ,
             viewOptions : {
                 masterView : PortfolioPerformanceScorecardMainView,
                 masterOptions : {
